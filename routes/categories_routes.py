@@ -16,9 +16,8 @@ async def get_user_categories(Authorize: AuthJWT = Depends(), db: Session = Depe
     
     current_user_id = Authorize.get_jwt_subject()
     categories = db.query(Category).filter(Category.user_id == current_user_id).all()
-    if categories:
-        return categories
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No categories found")
+    
+    return categories
 
 @categories_router.post("/create", response_model=CategoryResponse, status_code=status.HTTP_201_CREATED)
 async def create_category(category: CategoryModel, Authorize: AuthJWT = Depends(), db: Session = Depends(get_db)):
