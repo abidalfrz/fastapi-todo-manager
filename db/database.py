@@ -2,7 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQL_ALCHEMY_DATABASE_URL = "sqlite:///./to_do.db"
+DB_NAME = "to_do.db"
+
+SQL_ALCHEMY_DATABASE_URL = f"sqlite:///./{DB_NAME}"
 engine = create_engine(
     SQL_ALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )

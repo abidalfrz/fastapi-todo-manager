@@ -47,7 +47,7 @@ def get_config():
 
 Base.metadata.create_all(bind=engine)
 
-# # Seed initial data on startup
+# Seed initial data on startup
 @app.on_event("startup")
 def on_startup():
     db = SessionLocal()
@@ -67,5 +67,9 @@ async def greet():
     return {"message": "Welcome to the To-Do Management API!"}
 
 if __name__ == '__main__':
-    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
+    FILE_NAME = "app"
+    FUNCTION_NAME = "app"
+    HOST = "127.0.0.1"
+    PORT = 8000
+    uvicorn.run(f"{FILE_NAME}:{FUNCTION_NAME}", host=HOST, port=PORT, reload=True)
 
