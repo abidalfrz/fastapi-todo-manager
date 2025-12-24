@@ -10,11 +10,17 @@ CATEGORIES_SEED = [
 ]
 
 def seed_data(db):
+    USER_EMAIL = "user123@gmail.com"
+    if db.query(User).filter(User.email == USER_EMAIL).first():
+        print("Seeding skipped. User already exists.")
+        return
+
     new_user = User(
         name="User123",
         email="user123@gmail.com",
         password=generate_password_hash("user123pass")
     )
+    
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

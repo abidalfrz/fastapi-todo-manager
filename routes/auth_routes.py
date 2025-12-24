@@ -1,6 +1,6 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Depends, status
 from fastapi_jwt_auth import AuthJWT
-from db.database import SessionLocal, engine
+from db.database import get_db
 from sqlalchemy.orm import Session
 from model.models import User, Category
 from schema.schemas import SignUpModel, Settings, UserResponse, LoginModel
@@ -8,13 +8,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from seeder.seeders import CATEGORIES_SEED
 
 user_router = APIRouter()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @user_router.get("/")
 async def hello(db: Session = Depends(get_db), Authorize: AuthJWT = Depends()):

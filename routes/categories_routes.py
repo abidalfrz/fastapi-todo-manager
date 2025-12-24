@@ -1,18 +1,11 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from fastapi_jwt_auth import AuthJWT
-from db.database import SessionLocal
+from db.database import get_db
 from sqlalchemy.orm import Session
 from model.models import Category, Todo
 from schema.schemas import CategoryModel, CategoryResponse
 
 categories_router = APIRouter()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @categories_router.get("/mycategories", response_model=list[CategoryResponse], status_code=status.HTTP_200_OK)
 async def get_user_categories(Authorize: AuthJWT = Depends(), db: Session = Depends(get_db)):

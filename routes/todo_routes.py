@@ -1,18 +1,11 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Depends, status
 from fastapi_jwt_auth import AuthJWT
-from db.database import SessionLocal, engine
+from db.database import get_db
 from sqlalchemy.orm import Session, joinedload
 from model.models import Todo
 from schema.schemas import TodoModel, TodoResponse, TodoUpdate
 
 todo_router = APIRouter()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @todo_router.get("/mytodos", response_model=list[TodoResponse], status_code=status.HTTP_200_OK)
 async def get_user_todos(Authorize: AuthJWT = Depends(), db: Session = Depends(get_db)):
