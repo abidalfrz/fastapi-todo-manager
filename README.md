@@ -125,3 +125,4 @@ FastAPI provides automatic interactive documentation. Open your browser and navi
 1. Swagger UI: `http://localhost:8000/docs` - Test endpoints directly from the browser.
 2. ReDoc: `http://localhost:8000/redoc` - Alternative API documentation.
 
+---
