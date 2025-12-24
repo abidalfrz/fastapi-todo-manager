@@ -66,7 +66,6 @@ fastapi-todo-manager/
 
 ## 📖 API Endpoints
 
-Table
 | Method | Endpoint               | Description                     |
 |--------|------------------------|---------------------------------|
 | POST   | /auth/register         | Register a new user             |
