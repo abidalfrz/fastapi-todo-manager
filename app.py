@@ -9,9 +9,24 @@ from schema.schemas import Settings
 from fastapi_jwt_auth import AuthJWT
 from fastapi.openapi.utils import get_openapi
 from seeder.seeders import seed_data
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    db = SessionLocal()
+    try:
+        seed_data(db)
+    except Exception as e:
+        print(f"Error during seeding data: {e}")
+    finally:
+        db.close()
+    yield
+    # Shutdown code (if any)
+
+    print("Shutting down...")
 
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 def custom_openapi():
     if app.openapi_schema:
@@ -46,17 +61,6 @@ def get_config():
     return Settings()
 
 Base.metadata.create_all(bind=engine)
-
-# Seed initial data on startup
-@app.on_event("startup")
-def on_startup():
-    db = SessionLocal()
-    try:
-        seed_data(db)
-    except Exception as e:
-        print(f"Error during seeding data: {e}")
-    finally:
-        db.close()
     
 app.include_router(user_router, prefix="/auth", tags=["auth"])
 app.include_router(todo_router, prefix="/todos", tags=["todos"])

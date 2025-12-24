@@ -59,8 +59,7 @@ fastapi-todo-manager/
 ├── .gitignore
 ├── app.py                  # Main application entry point & routes
 ├── README.md
-├── requirements.txt        # Python dependencies list
-└── to_do.db                # SQLite Database file (generated after running)
+└── requirements.txt        # Python dependencies list
 ```
 
 ---
