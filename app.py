@@ -11,6 +11,7 @@ from fastapi.openapi.utils import get_openapi
 from seeder.seeders import seed_data
 from contextlib import asynccontextmanager
 
+# run seeder at app startup
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     db = SessionLocal()
@@ -20,13 +21,14 @@ async def lifespan(app: FastAPI):
         print(f"Error during seeding data: {e}")
     finally:
         db.close()
+        
     yield
     # Shutdown code (if any)
 
     print("Shutting down...")
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan) 
 
 def custom_openapi():
     if app.openapi_schema:
