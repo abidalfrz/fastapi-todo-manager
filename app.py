@@ -14,6 +14,7 @@ from contextlib import asynccontextmanager
 # run seeder at app startup
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
         seed_data(db)
@@ -61,8 +62,6 @@ app.openapi = custom_openapi
 @AuthJWT.load_config
 def get_config():
     return Settings()
-
-Base.metadata.create_all(bind=engine)
     
 app.include_router(user_router, prefix="/auth", tags=["auth"])
 app.include_router(todo_router, prefix="/todos", tags=["todos"])
