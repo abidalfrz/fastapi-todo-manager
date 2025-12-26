@@ -1,6 +1,6 @@
 # 📝 FastAPI Task Management API
 
-This repository containas a RESTful API for managing to-do tasks using FastAPI. The application allows users to create, read, update, and delete tasks, with JWT-based authentication for secure access.
+This repository contains a RESTful API for managing to-do tasks using FastAPI. The application allows users to create, read, update, and delete tasks, with JWT-based authentication for secure access.
 
 ---
 
