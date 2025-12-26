@@ -11,7 +11,7 @@ This repository containas a RESTful API for managing to-do tasks using FastAPI. 
 - Database: Persistent storage using SQLite and SQLAlchemy ORM.
 - Modern API: Built with FastAPI for high performance and easy development.
 - Category Management: CRUD operations for task categories.
-- Input Validation: Data validation using Pydantic models.
+- Custom Documentation OpenAPI: Custmize FastAPI's automatic API documentation.
 - Database Seeding: Initial data population for categories.
 
 ---
