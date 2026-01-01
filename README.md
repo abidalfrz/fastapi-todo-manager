@@ -18,14 +18,14 @@ This repository contains a RESTful API for managing to-do tasks using FastAPI. T
 
 ## 🛠️ Tech Stack
 
-- **Python**
-- **FastAPI**
-- **FastAPI-JWT-Auth**
-- **SQLAlchemy**
-- **SQLite**
-- **Pydantic**
-- **Uvicorn**
-- **Werkzeug**
+- **Language:** Python
+- **Framework:** FastAPI
+- **ASGI Server:** Uvicorn
+- **Database:** SQLite
+- **ORM:** SQLAlchemy
+- **Authentication:** FastAPI-JWT-Auth
+- **Validation:** Pydantic
+- **Hashing:** Werkzeug
 
 ---
 
